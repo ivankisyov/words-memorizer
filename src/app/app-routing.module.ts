@@ -4,6 +4,10 @@ import { HomeComponent } from './core/components/home/home.component';
 
 const routes: Routes = [
   {
+    path: 'your-dictionary',
+    loadChildren: () => import('./features/your-dictionary/your-dictionary.module').then((m) => m.YourDictionaryModule),
+  },
+  {
     path: '',
     pathMatch: 'full',
     component: HomeComponent,
