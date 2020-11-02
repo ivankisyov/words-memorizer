@@ -12,9 +12,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [HomeComponent, MainLayoutComponent],
+  declarations: [HomeComponent, MainLayoutComponent, PageNotFoundComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -24,7 +25,7 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatButtonModule,
   ],
-  exports: [HomeComponent, MainLayoutComponent],
+  exports: [HomeComponent, MainLayoutComponent, PageNotFoundComponent],
 })
 export class CoreModule {
   constructor(
