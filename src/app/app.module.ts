@@ -8,17 +8,9 @@ import { UiMaterialModule } from './shared/ui/ui-material/ui-material.module';
 import { CoreModule } from './core/core.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    CoreModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    UiMaterialModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, CoreModule, AppRoutingModule, BrowserAnimationsModule, UiMaterialModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
