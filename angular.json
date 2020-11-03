@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "guess-the-word"
+  "defaultProject": "guess-the-word",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
