@@ -1,2 +1,23 @@
 <p>your-dictionary works!</p>
 {{ allWords$ | async | json }}
+
+<hr />
+<div class="container">
+  <form [formGroup]="wordForm" class="row" (ngSubmit)="onSubmit(wordForm.value)">
+    <mat-form-field appearance="fill" class="col-12">
+      <mat-label>English word</mat-label>
+      <input matInput placeholder="word in english" formControlName="enWord" required />
+      <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-12">
+      <mat-label>Bulgarian explanation</mat-label>
+      <input matInput placeholder="bg translation" formControlName="bgWord" required />
+      <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+    </mat-form-field>
+    <div class="col-12 justify-content-center d-flex">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!wordForm.valid">
+        Submit Form
+      </button>
+    </div>
+  </form>
+</div>
