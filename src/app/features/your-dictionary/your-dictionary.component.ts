@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loadWords } from 'src/app/store';
+import { loadWords } from 'app/store';
 
 @Component({
   selector: 'gtw-your-dictionary',
