@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loadWords } from 'src/app/store';
 
 @Component({
   selector: 'gtw-your-dictionary',
   templateUrl: './your-dictionary.component.html',
-  styleUrls: ['./your-dictionary.component.scss']
+  styleUrls: ['./your-dictionary.component.scss'],
 })
 export class YourDictionaryComponent implements OnInit {
-
-  constructor() { }
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
+    this.store.dispatch(loadWords());
   }
-
 }
