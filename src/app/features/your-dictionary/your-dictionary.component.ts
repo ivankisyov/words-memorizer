@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { loadWords } from 'app/store';
 import { selectAllWords } from './store/words.reducer';
 import { addWord } from './store/words.actions';
+import { HelperService } from '@shared/services/helper.service';
 
 @Component({
   selector: 'gtw-your-dictionary',
@@ -14,7 +15,7 @@ export class YourDictionaryComponent implements OnInit {
   wordForm: FormGroup;
   allWords$ = this.store.select(selectAllWords);
 
-  constructor(private store: Store, private formBuilder: FormBuilder) {}
+  constructor(private store: Store, private formBuilder: FormBuilder, private helperService: HelperService) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadWords());
@@ -33,7 +34,7 @@ export class YourDictionaryComponent implements OnInit {
           bg: value.bgWord,
           correctGuesses: 0,
           timesPlayed: 0,
-          id: 'test-id',
+          id: this.helperService.setId(),
         },
       })
     );
