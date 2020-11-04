@@ -14,6 +14,8 @@ import { HelperService } from '@shared/services/helper.service';
 export class YourDictionaryComponent implements OnInit {
   wordForm: FormGroup;
   allWords$ = this.store.select(selectAllWords);
+  displayedColumns: string[] = ['en', 'bg'];
+  wantToAddNewWord = false;
 
   constructor(private store: Store, private formBuilder: FormBuilder, private helperService: HelperService) {}
 
@@ -40,5 +42,10 @@ export class YourDictionaryComponent implements OnInit {
     );
 
     this.wordForm.reset();
+    this.wantToAddNewWord = false;
+  }
+
+  showForm(): void {
+    this.wantToAddNewWord = true;
   }
 }
