@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { EffectsModule } from '@ngrx/effects';
+import { WordsEffects } from './store/words.effects';
 
 @NgModule({
   declarations: [YourDictionaryComponent],
@@ -21,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     ReactiveFormsModule,
     StoreModule.forFeature(fromWords.wordsFeatureKey, fromWords.reducer),
+    EffectsModule.forFeature([WordsEffects]),
   ],
 })
 export class YourDictionaryModule {}
