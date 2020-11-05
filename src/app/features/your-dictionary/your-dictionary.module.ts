@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 
 import { EffectsModule } from '@ngrx/effects';
 import { WordsEffects } from './store/words.effects';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [YourDictionaryComponent],
@@ -25,6 +26,7 @@ import { WordsEffects } from './store/words.effects';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
+    MatIconModule,
     ReactiveFormsModule,
     StoreModule.forFeature(fromWords.wordsFeatureKey, fromWords.reducer),
     EffectsModule.forFeature([WordsEffects]),

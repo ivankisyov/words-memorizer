@@ -17,6 +17,9 @@ export const wordsReducer = createReducer(
   on(WordsActions.addWord, (state, { word }) => {
     return adapter.addOne(word, state);
   }),
+  on(WordsActions.deleteWord, (state, { id }) => {
+    return adapter.removeOne(id, state);
+  }),
   on(WordsActions.setWords, (state, { words }) => {
     return adapter.setAll(words, state);
   })

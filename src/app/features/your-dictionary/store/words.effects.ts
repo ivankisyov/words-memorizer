@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { addWord, setWords } from './words.actions';
+import { addWord, deleteWord, setWords } from './words.actions';
 // wat
 import { LocalStorageService } from './../../../shared/data/services/local-storage.service';
 import { Store } from '@ngrx/store';
@@ -15,7 +15,7 @@ export class WordsEffects {
   saveWordsToLocalStorate = createEffect(
     () =>
       this.actions$.pipe(
-        ofType(addWord),
+        ofType(addWord, deleteWord),
         withLatestFrom(this.store.select(selectAllWords)),
         tap(([_, words]) => {
           this.localStorageService.setWords(words);

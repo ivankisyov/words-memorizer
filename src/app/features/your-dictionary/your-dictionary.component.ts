@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loadWords } from 'app/store';
 import { selectAllWords } from './store/words.reducer';
-import { addWord } from './store/words.actions';
+import { addWord, deleteWord } from './store/words.actions';
 import { HelperService } from '@shared/services/helper.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { HelperService } from '@shared/services/helper.service';
 export class YourDictionaryComponent implements OnInit {
   wordForm: FormGroup;
   allWords$ = this.store.select(selectAllWords);
-  displayedColumns: string[] = ['en', 'bg'];
+  displayedColumns: string[] = ['en', 'bg', 'delete'];
   wantToAddNewWord = false;
 
   constructor(private store: Store, private formBuilder: FormBuilder, private helperService: HelperService) {}
@@ -47,5 +47,9 @@ export class YourDictionaryComponent implements OnInit {
 
   showForm(): void {
     this.wantToAddNewWord = true;
+  }
+
+  deleteWord(id: string): void {
+    this.store.dispatch(deleteWord({ id }));
   }
 }
