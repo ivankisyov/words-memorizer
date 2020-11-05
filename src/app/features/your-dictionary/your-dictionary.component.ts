@@ -5,6 +5,8 @@ import { loadWords } from 'app/store';
 import { selectAllWords } from './store/words.reducer';
 import { addWord, deleteWord } from './store/words.actions';
 import { HelperService } from '@shared/services/helper.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UiWordsFormComponent } from '@shared/ui/ui-words-form/ui-words-form.component';
 
 @Component({
   selector: 'gtw-your-dictionary',
@@ -15,42 +17,16 @@ export class YourDictionaryComponent implements OnInit {
   wordForm: FormGroup;
   allWords$ = this.store.select(selectAllWords);
   displayedColumns: string[] = ['en', 'bg', 'edit', 'delete'];
-  wantToAddNewWord = false;
 
-  constructor(
-    private store: Store,
-    private formBuilder: FormBuilder,
-    private helperService: HelperService
-  ) {}
+  constructor(private store: Store, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadWords());
-
-    this.wordForm = this.formBuilder.group({
-      enWord: [null, Validators.required],
-      bgWord: [null, Validators.required],
-    });
   }
 
-  onSubmit(value: { enWord: string; bgWord: string }) {
-    this.store.dispatch(
-      addWord({
-        word: {
-          en: value.enWord,
-          bg: value.bgWord,
-          correctGuesses: 0,
-          timesPlayed: 0,
-          id: this.helperService.setId(),
-        },
-      })
-    );
-
-    this.wordForm.reset();
-    this.wantToAddNewWord = false;
-  }
-
-  showForm(): void {
-    this.wantToAddNewWord = true;
+  openDialog() {
+    // dialogRef
+    this.dialog.open(UiWordsFormComponent);
   }
 
   deleteWord(id: string): void {
@@ -58,6 +34,6 @@ export class YourDictionaryComponent implements OnInit {
   }
 
   edit(id: string): void {
-    console.log('edit -> id', id);
+    // this.isEditWordModeOn = true
   }
 }

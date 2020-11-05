@@ -8,27 +8,30 @@ import * as fromWords from './store/words.reducer';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { EffectsModule } from '@ngrx/effects';
 import { WordsEffects } from './store/words.effects';
 import { MatIconModule } from '@angular/material/icon';
+import { UiWordsFormModule } from '@shared/ui/ui-words-form/ui-words-form.module';
 
 @NgModule({
   declarations: [YourDictionaryComponent],
   imports: [
     CommonModule,
+    UiWordsFormModule,
     YourDictionaryRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
     MatTableModule,
     MatIconModule,
+    MatDialogModule,
     ReactiveFormsModule,
-    StoreModule.forFeature(fromWords.wordsFeatureKey, fromWords.reducer),
+    StoreModule.forFeature(
+      fromWords.wordsFeatureKey,
+      fromWords.reducer
+    ),
     EffectsModule.forFeature([WordsEffects]),
   ],
 })
