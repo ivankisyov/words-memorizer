@@ -14,10 +14,14 @@ import { HelperService } from '@shared/services/helper.service';
 export class YourDictionaryComponent implements OnInit {
   wordForm: FormGroup;
   allWords$ = this.store.select(selectAllWords);
-  displayedColumns: string[] = ['en', 'bg', 'delete'];
+  displayedColumns: string[] = ['en', 'bg', 'edit', 'delete'];
   wantToAddNewWord = false;
 
-  constructor(private store: Store, private formBuilder: FormBuilder, private helperService: HelperService) {}
+  constructor(
+    private store: Store,
+    private formBuilder: FormBuilder,
+    private helperService: HelperService
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadWords());
@@ -51,5 +55,9 @@ export class YourDictionaryComponent implements OnInit {
 
   deleteWord(id: string): void {
     this.store.dispatch(deleteWord({ id }));
+  }
+
+  edit(id: string): void {
+    console.log('edit -> id', id);
   }
 }
