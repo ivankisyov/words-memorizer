@@ -37,7 +37,13 @@
                   mat-icon-button
                   class="my-3"
                   color="accent"
-                  (click)="edit(element.id)"
+                  (click)="
+                    edit({
+                      en: element.en,
+                      bg: element.bg,
+                      id: element.id
+                    })
+                  "
                 >
                   <mat-icon>edit</mat-icon>
                 </button>

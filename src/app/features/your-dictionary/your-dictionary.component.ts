@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loadWords } from 'app/store';
 import { selectAllWords } from './store/words.reducer';
-import { addWord, deleteWord } from './store/words.actions';
-import { HelperService } from '@shared/services/helper.service';
+import { deleteWord } from './store/words.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { UiWordsFormComponent } from '@shared/ui/ui-words-form/ui-words-form.component';
 
@@ -24,7 +23,7 @@ export class YourDictionaryComponent implements OnInit {
     this.store.dispatch(loadWords());
   }
 
-  openDialog() {
+  openDialog(): void {
     // dialogRef
     this.dialog.open(UiWordsFormComponent);
   }
@@ -33,7 +32,9 @@ export class YourDictionaryComponent implements OnInit {
     this.store.dispatch(deleteWord({ id }));
   }
 
-  edit(id: string): void {
-    // this.isEditWordModeOn = true
+  edit(word: { en: string; bg: string; id: string }): void {
+    this.dialog.open(UiWordsFormComponent, {
+      data: word,
+    });
   }
 }
