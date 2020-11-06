@@ -6,7 +6,15 @@ import { PageNotFoundComponent } from './core/components/page-not-found/page-not
 const routes: Routes = [
   {
     path: 'your-dictionary',
-    loadChildren: () => import('./features/your-dictionary/your-dictionary.module').then((m) => m.YourDictionaryModule),
+    loadChildren: () =>
+      import(
+        './features/your-dictionary/your-dictionary.module'
+      ).then((m) => m.YourDictionaryModule),
+  },
+  {
+    path: 'play',
+    loadChildren: () =>
+      import('./features/play/play.module').then((m) => m.PlayModule),
   },
   {
     path: '',
