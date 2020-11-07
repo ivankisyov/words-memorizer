@@ -3,12 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { HelperService } from '@shared/services/helper.service';
-import {
-  addWord,
-  editWord,
-} from 'app/features/your-dictionary/store/words.actions';
+
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
+import { editWord, addWord } from '@shared/data/store/words.actions';
 
 @Component({
   selector: 'gtw-ui-words-form',

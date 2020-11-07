@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loadWords } from 'app/store';
-import { selectAllWords } from './store/words.reducer';
-import { deleteWord } from './store/words.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { UiWordsFormComponent } from '@shared/ui/ui-words-form/ui-words-form.component';
+import { selectAllWords } from '@shared/data/store/words.reducer';
+import { deleteWord } from '@shared/data/store/words.actions';
 
 @Component({
   selector: 'gtw-your-dictionary',
