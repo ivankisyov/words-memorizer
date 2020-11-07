@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { loadWords } from 'app/store';
 import { MatDialog } from '@angular/material/dialog';
 import { UiWordsFormComponent } from '@shared/ui/ui-words-form/ui-words-form.component';
-import { selectAllWords } from '@shared/data/store/words.reducer';
-import { deleteWord } from '@shared/data/store/words.actions';
+import { selectAllWords, selectAreWordsLoaded } from 'app/store';
+import { loadWords, deleteWord } from 'app/store/words.actions';
+import { take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'gtw-your-dictionary',
@@ -20,7 +20,17 @@ export class YourDictionaryComponent implements OnInit {
   constructor(private store: Store, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.store.dispatch(loadWords());
+    this.store
+      .select(selectAreWordsLoaded)
+      .pipe(
+        tap((areWordsLoaded) => {
+          if (!areWordsLoaded) {
+            this.store.dispatch(loadWords());
+          }
+        }),
+        take(1)
+      )
+      .subscribe();
   }
 
   openDialog(): void {

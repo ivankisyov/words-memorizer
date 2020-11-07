@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { selectAreWordsLoaded } from 'app/store';
+import { loadWords } from 'app/store/words.actions';
+import { tap, take } from 'rxjs/operators';
 
 @Component({
   selector: 'gtw-play',
@@ -10,6 +13,16 @@ export class PlayComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    // this.store.dispatch(loadWords());
+    this.store
+      .select(selectAreWordsLoaded)
+      .pipe(
+        tap((areWordsLoaded) => {
+          if (!areWordsLoaded) {
+            this.store.dispatch(loadWords());
+          }
+        }),
+        take(1)
+      )
+      .subscribe();
   }
 }

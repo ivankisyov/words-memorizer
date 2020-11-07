@@ -5,12 +5,12 @@ import {
   editWord,
   deleteWord,
   setWords,
+  loadWords,
 } from './words.actions';
 import { Store } from '@ngrx/store';
-import { selectAllWords } from './words.reducer';
 import { withLatestFrom, map, tap } from 'rxjs/operators';
-import { loadWords } from 'app/store';
 import { LocalStorageService } from '@shared/data/services/local-storage.service';
+import { selectAllWords } from '.';
 
 @Injectable()
 export class WordsEffects {

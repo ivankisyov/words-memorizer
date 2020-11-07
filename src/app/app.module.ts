@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import * as fromRoot from './store';
 import { EffectsModule } from '@ngrx/effects';
+import { WordsEffects } from './store/words.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,11 +22,16 @@ import { EffectsModule } from '@ngrx/effects';
     AppRoutingModule,
     BrowserAnimationsModule,
     UiMaterialModule,
-    StoreModule.forRoot({ [fromRoot.uiKey]: fromRoot.reducer }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot({
+      [fromRoot.wordsFeatureKey]: fromRoot.reducer,
+    }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     StoreRouterConnectingModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot(),
+    EffectsModule.forRoot([WordsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -6,7 +6,7 @@ import { HelperService } from '@shared/services/helper.service';
 
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
-import { editWord, addWord } from '@shared/data/store/words.actions';
+import { editWord, addWord } from 'app/store/words.actions';
 
 @Component({
   selector: 'gtw-ui-words-form',
