@@ -10,3 +10,13 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.mat-snack-bar-container.correct {
+  background: #3dcc97;
+  color: white;
+}
+
+.mat-snack-bar-container.wrong {
+  background: #cc3d71;
+  color: white;
+}

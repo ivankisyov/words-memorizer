@@ -1,1 +1,45 @@
-<p>play works!</p>
+<ng-container *ngIf="wordToGuess$ | async as wordToGuess">
+  <form
+    [formGroup]="guessForm"
+    class="align-items-center d-flex flex-column"
+    (ngSubmit)="onSubmit(guessForm.value)"
+  >
+    <label class="d-block h2 mb-4" id="example-radio-group-label"
+      >What does <strong>{{ wordToGuess.en }}</strong> mean:</label
+    >
+    <mat-radio-group
+      required
+      class="d-flex flex-column mb-3 align-self-start"
+      formControlName="choice"
+    >
+      <mat-radio-button
+        *ngFor="let choice of possibleChoices"
+        [value]="choice.en"
+      >
+        {{ choice.bg }}
+      </mat-radio-button>
+    </mat-radio-group>
+    <button
+      *ngIf="!playAgain"
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="button"
+      [disabled]="!guessForm.valid"
+    >
+      Submit
+    </button>
+  </form>
+
+  <div class="justify-content-center d-flex">
+    <button
+      *ngIf="playAgain"
+      mat-raised-button
+      color="primary"
+      class="button"
+      (click)="loadNewWord()"
+    >
+      Play Again
+    </button>
+  </div>
+</ng-container>
